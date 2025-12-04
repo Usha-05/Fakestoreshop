@@ -1,13 +1,13 @@
-# Movie SPA - Single Page Application
+# FakeStore Shop - Single Page Application
 
-A modern, fully functional Single Page Application (SPA) built with React and Vite that integrates with The Movie Database (TMDB) API to display popular movies, search functionality, and detailed movie information.
+A modern, fully functional Single Page Application (SPA) built with React and Vite that integrates with the Fake Store API to display products, search functionality, and detailed product information.
 
 ## 🎯 Project Overview
 
 This SPA demonstrates modern front-end development practices including:
 - **React** with functional components and hooks
 - **React Router** for client-side routing
-- **API Integration** with TMDB Movies API
+- **API Integration** with Fake Store API
 - **Responsive Design** for all device sizes
 - **Dark Mode** toggle functionality
 - **State Management** with React hooks and localStorage
@@ -38,15 +38,17 @@ SPA/
 │   ├── components/          # Reusable components
 │   │   ├── Navbar.jsx      # Navigation bar with theme toggle
 │   │   ├── Button.jsx      # Reusable button component
-│   │   ├── Card.jsx        # Movie card component
+│   │   ├── Card.jsx        # Product card component
 │   │   ├── Loader.jsx      # Loading spinner
-│   │   └── Error.jsx       # Error message component
+│   │   ├── Error.jsx       # Error message component
+│   │   └── Modal.jsx       # Modal dialog component
 │   ├── pages/              # Page components
 │   │   ├── Home.jsx        # Home/welcome page
-│   │   ├── List.jsx        # Movies list page
-│   │   └── Detail.jsx      # Movie detail page
+│   │   ├── Products.jsx    # Products catalog page
+│   │   ├── List.jsx        # Products list view page
+│   │   └── Detail.jsx      # Product detail page
 │   ├── services/           # API services
-│   │   └── api.js          # TMDB API integration
+│   │   └── api.js          # Fake Store API integration
 │   ├── App.jsx             # Main app component with routing
 │   ├── App.css             # App styles
 │   ├── main.jsx            # Entry point
@@ -57,30 +59,31 @@ SPA/
 └── README.md
 ```
 
-## 🎬 API Integration
+## 🛒 API Integration
 
-### Selected API: The Movie Database (TMDB)
-- **API**: https://api.themoviedb.org/3
-- **Why TMDB**: 
+### Selected API: Fake Store API
+- **API**: https://fakestoreapi.com
+- **Why Fake Store API**: 
   - Free public API with no authentication required
-  - Rich movie data (posters, ratings, descriptions, metadata)
+  - Rich product data (images, prices, ratings, descriptions)
   - Well-documented and reliable
-  - High-quality images and comprehensive movie information
+  - Multiple categories and comprehensive product information
 
 ### API Endpoints Used
-1. **GET /movie/popular** - Fetch popular movies
-2. **GET /movie/{id}** - Get movie details by ID
-3. **GET /search/movie** - Search movies by query
+1. **GET /products** - Fetch all products
+2. **GET /products/{id}** - Get product details by ID
+3. **GET /products/category/{category}** - Get products by category
+4. **GET /products/categories** - Get all available categories
 
 ### API Service Features
 - Centralized API configuration
 - Error handling
-- Image URL helper function
-- Pagination support
+- Category filtering support
+- Product search functionality
 
 ## 🗺️ Routing Structure
 
-The application uses React Router for client-side routing with three main routes:
+The application uses React Router for client-side routing with four main routes:
 
 1. **Home Page (`/`)**
    - Welcome message
@@ -88,18 +91,23 @@ The application uses React Router for client-side routing with three main routes
    - Feature highlights
    - Navigation buttons
 
-2. **List Page (`/movies`)**
-   - Displays popular movies in a grid
+2. **Products Page (`/products`)**
+   - Displays products in a grid layout
    - Search functionality
-   - Pagination controls
-   - Click on any movie to view details
+   - Category filter dropdown
+   - Click on any product to view details
 
-3. **Detail Page (`/movie/:id`)**
-   - Full movie information
-   - Poster image
-   - Ratings, genres, release date
-   - Production companies
-   - Budget and revenue stats
+3. **List Page (`/list`)**
+   - Alternative list view of products
+   - Compact product display
+   - Search and filter support
+
+4. **Detail Page (`/products/:id`)**
+   - Full product information
+   - Product image
+   - Price, rating, and reviews
+   - Category information
+   - Product description
    - Add to favorites (localStorage)
    - Back navigation
 
@@ -119,9 +127,9 @@ The application uses React Router for client-side routing with three main routes
    - Consistent styling
 
 3. **Card**
-   - Movie poster display
-   - Title and release year
-   - Rating overlay
+   - Product image display
+   - Title and price
+   - Rating display
    - Hover effects
    - Clickable navigation
 
@@ -134,6 +142,11 @@ The application uses React Router for client-side routing with three main routes
    - Error message display
    - Retry button
    - User-friendly error handling
+
+6. **Modal**
+   - Modal dialog component
+   - Overlay background
+   - Close functionality
 
 ## 🎨 UI/UX Features
 
@@ -161,14 +174,14 @@ The application uses React Router for client-side routing with three main routes
 ## ✨ Bonus Features Implemented
 
 1. **Search Functionality**
-   - Real-time movie search
+   - Real-time product search
+   - Search by title or description
    - Search results display
-   - Clear search state management
 
-2. **Pagination**
-   - Navigate through multiple pages
-   - Page number display
-   - Previous/Next buttons
+2. **Category Filtering**
+   - Filter products by category
+   - All categories dropdown
+   - Dynamic category loading
 
 3. **Dark Mode Toggle**
    - Theme switcher in navbar
@@ -176,11 +189,16 @@ The application uses React Router for client-side routing with three main routes
    - Smooth theme transitions
 
 4. **Favorites (localStorage)**
-   - Add/remove movies from favorites
+   - Add/remove products from favorites
    - Persists across sessions
    - Visual feedback with heart icon
 
-5. **Animations & Transitions**
+5. **Multiple View Modes**
+   - Grid view (Products page)
+   - List view (List page)
+   - Detail view (Detail page)
+
+6. **Animations & Transitions**
    - Smooth hover effects on cards
    - Page transitions
    - Button interactions
@@ -221,18 +239,17 @@ The application uses React Router for client-side routing with three main routes
 - Feature cards highlighting key functionality
 - Call-to-action buttons
 
-### List Page
-- Grid layout of movie cards
+### Products Page
+- Grid layout of product cards
 - Search bar at the top
-- Pagination controls
+- Category filter dropdown
 - Responsive grid that adapts to screen size
 
 ### Detail Page
-- Large movie poster
-- Comprehensive movie information
-- Genre tags
-- Production company details
-- Budget and revenue statistics
+- Large product image
+- Comprehensive product information
+- Category tag
+- Price and rating statistics
 - Favorite button
 
 ## 🔧 State Management
@@ -247,7 +264,7 @@ The application uses React Router for client-side routing with three main routes
 ### Persistent State
 - **localStorage** for:
   - Theme preference (light/dark)
-  - Favorite movies list
+  - Favorite products list
 
 ## 🎯 Key Features Explained
 
@@ -260,7 +277,7 @@ The application uses React Router for client-side routing with three main routes
 
 ### Routing
 - React Router DOM for SPA navigation
-- URL parameters for movie details (`/movie/:id`)
+- URL parameters for product details (`/products/:id`)
 - Programmatic navigation with `useNavigate`
 - Active route highlighting in navbar
 
@@ -273,10 +290,10 @@ The application uses React Router for client-side routing with three main routes
 ## 🐛 Challenges & Solutions
 
 ### Challenge 1: API Rate Limiting
-**Solution**: Implemented proper error handling and user-friendly error messages. The TMDB API is generous with rate limits for public use.
+**Solution**: Implemented proper error handling and user-friendly error messages. The Fake Store API is generous with rate limits for public use.
 
 ### Challenge 2: Image Loading
-**Solution**: Used TMDB's image CDN with different sizes. Added fallback placeholder images for missing posters.
+**Solution**: Used product images directly from the API. Added fallback handling for missing images.
 
 ### Challenge 3: Responsive Design
 **Solution**: Used CSS Grid with `auto-fill` and `minmax()` for flexible layouts. Media queries for breakpoints at 768px and 968px.
@@ -284,8 +301,8 @@ The application uses React Router for client-side routing with three main routes
 ### Challenge 4: State Persistence
 **Solution**: Used localStorage to persist theme and favorites across page refreshes.
 
-### Challenge 5: Search Debouncing
-**Solution**: Implemented search on form submit and useEffect dependency to prevent excessive API calls.
+### Challenge 5: Search and Filter
+**Solution**: Implemented client-side filtering for search and category-based filtering with API calls.
 
 ## 📦 Build & Deploy
 
@@ -316,5 +333,4 @@ Created as part of a front-end development assignment demonstrating SPA developm
 
 ---
 
-**Note**: This project uses a public TMDB API key. For production use, consider implementing environment variables for API keys.
-
+**Note**: This project uses the public Fake Store API. No API key is required for this API.
