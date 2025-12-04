@@ -235,22 +235,36 @@ The application uses React Router for client-side routing with four main routes:
 ## 📸 Screenshots
 
 ### Home Page
+![Home Page](./screenshots/home-page.png)
 - Welcome section with app description
 - Feature cards highlighting key functionality
 - Call-to-action buttons
 
 ### Products Page
+![Products Page](./screenshots/products-page.png)
 - Grid layout of product cards
 - Search bar at the top
 - Category filter dropdown
 - Responsive grid that adapts to screen size
 
-### Detail Page
+### List Page
+![List Page](./screenshots/list-page.png)
+- Alternative list view of products
+- Compact product display
+- Search and filter support
+
+### Product Detail Page
+![Product Detail Page](./screenshots/detail-page.png)
 - Large product image
 - Comprehensive product information
 - Category tag
 - Price and rating statistics
 - Favorite button
+
+### Dark Mode
+![Dark Mode](./screenshots/dark-mode.png)
+- Dark theme toggle functionality
+- Smooth theme transitions
 
 ## 🔧 State Management
 
